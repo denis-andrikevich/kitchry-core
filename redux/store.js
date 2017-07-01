@@ -11,8 +11,8 @@ const store = createStore(
 );
 
 export default (httpService, storageService) => {
-    if(!httpService)     throw 'Http service required';
-    if (!storageService) throw 'Storage service requiered';
+    if(!httpService)     throw new Error ('Http service required');
+    if (!storageService) throw new Error ('Storage service requiered');
 
     http.service = httpService;
     storage.service = storageService;
