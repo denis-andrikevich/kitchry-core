@@ -2,9 +2,9 @@ export default (() => {
     let _service;
 
     return {
-        set service(httpService) {
-            if (_service) throw 'Http service already exist';
-            _service = httpService;
+        set service(storageService) {
+            if (storage) throw 'Local storage already exist';
+            _service = storageService;
         },
         get service() {
             return _service;

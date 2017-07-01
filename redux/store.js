@@ -3,15 +3,20 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import http from '../utils/http.service';
+import storage from '../utils/storage.service';
 
 const store = createStore(
     rootReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
 
-export default (httpLib) => {
-    if(!httpLib) throw 'http lib err';
-    http.lib = httpLib;
+export default (httpService, storageService) => {
+    if(!httpService)     throw 'Http service required';
+    if (!storageService) throw 'Storage service requiered';
+
+    http.service = httpService;
+    storage.service = storageService;
+    
     //create singletons
     return store
 };

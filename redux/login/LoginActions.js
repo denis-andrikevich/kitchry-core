@@ -1,4 +1,5 @@
 import http from '../../utils/http.service';
+import storage from '../../utils/storage.service';
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
@@ -10,9 +11,9 @@ export function loginAction(data, success, error) {
     return dispatch => {
         dispatch({ type: LOGIN_REQUEST });
 
-        http.lib.post('/api/login', data)
+        http.service.post('api/v2/mobile/login', data)
             .then(res => {
-                localStorage.setItem('token', res.data.token);
+                storage.service.setItem('token', res.data.token);
                 dispatch({ type: LOGIN_SUCCESS, payload: res.data.token })
             })
             .catch(err => dispatch({ type: LOGIN_ERROR }) );
