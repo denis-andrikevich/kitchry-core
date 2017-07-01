@@ -5,18 +5,19 @@ import rootReducer from './reducers';
 import http from '../utils/http.service';
 import storage from '../utils/storage.service';
 
-const store = createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
-);
+let store;
 
 export default (httpService, storageService) => {
-    if(!httpService)     throw new Error ('Http service required');
-    if (!storageService) throw new Error ('Storage service requiered');
+    if (!httpService) throw new Error('Http service required');
+    if (!storageService) throw new Error('Storage service requiered');
 
     http.service = httpService;
     storage.service = storageService;
-    
-    //create singletons
+    if (!store) {
+        store = createStore(
+            rootReducer,
+            composeWithDevTools(applyMiddleware(thunk))
+        );
+    }
     return store
 };
