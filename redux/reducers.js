@@ -3,14 +3,9 @@ import loginReducer from './login/LoginReducer';
 import { reducer as formReducer } from 'redux-form';
 
 
-let rootReducer;
+const rootReducer = combineReducers({
+    login: loginReducer,
+    form: formReducer
+})
 
-export default () => {
-    if (!rootReducer) {
-        rootReducer = combineReducers({
-            login: loginReducer,
-            form: formReducer
-        })
-    }
-    return rootReducer;
-}
+export default rootReducer;

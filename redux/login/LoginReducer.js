@@ -6,15 +6,17 @@ import {
     LOGOUT
 } from "./LoginConstants";
 
-const user = JSON.parse(storage.service.getItem('user_data'));
+const getInitialState = () => {
+    const user = JSON.parse(storage.service.getItem('user_data'));
 
-const initialState = {
-    request: false,
-    isLoggedIn: !!user,
-    user
-};
+    return {
+        request: false,
+        isLoggedIn: !!user,
+        user
+    };
+}
 
-const loginReducer = (state = initialState, action) => {
+const loginReducer = (state = getInitialState(), action) => {
     switch (action.type) {
         case LOGIN_REQUEST:
             return {
