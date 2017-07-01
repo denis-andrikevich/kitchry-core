@@ -13,10 +13,10 @@ export default (httpService, storageService) => {
 
     http.service = httpService;
     storage.service = storageService;
-    
+
     if (!store) {
         store = createStore(
-            rootReducer,
+            rootReducer(),
             composeWithDevTools(applyMiddleware(thunk))
         );
     }
