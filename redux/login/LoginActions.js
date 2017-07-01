@@ -1,5 +1,4 @@
-import axios from '../../../helpers/interceptors';
-
+import http from '../../utils/http.service';
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
@@ -11,7 +10,7 @@ export function loginAction(data, success, error) {
     return dispatch => {
         dispatch({ type: LOGIN_REQUEST });
 
-        axios.post('/login', data)
+        http.lib.post('/api/login', data)
             .then(res => {
                 localStorage.setItem('token', res.data.token);
                 dispatch({ type: LOGIN_SUCCESS, payload: res.data.token })
