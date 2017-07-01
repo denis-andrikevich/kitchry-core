@@ -1,3 +1,4 @@
+import storage from '../../utils/storage.service';
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
@@ -5,7 +6,7 @@ import {
     LOGOUT
 } from "./LoginConstants";
 
-const user = JSON.parse(localStorage.getItem('user_data'));
+const user = JSON.parse(storage.service.getItem('user_data'));
 
 const initialState = {
     request: false,
@@ -28,15 +29,15 @@ const loginReducer = (state = initialState, action) => {
                 user: null
             };
         case LOGIN_SUCCESS:
-            localStorage.setItem('user_data', JSON.stringify(action.payload));
+            storage.service.setItem('user_data', JSON.stringify(action.payload));
             return {
                 request: false,
                 isLoggedIn: true,
                 user: action.payload
             };
         case LOGOUT:
-            localStorage.removeItem('user_data');
-            localStorage.removeItem('token');
+            storage.service.removeItem('user_data');
+            storage.service.removeItem('token');
             return {
                 request: false,
                 isLoggedIn: false,
