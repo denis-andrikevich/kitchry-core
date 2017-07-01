@@ -3,7 +3,7 @@ export default (() => {
 
     return {
         set service(storageService) {
-            if (storage) throw 'Local storage already exist';
+            if (_service) throw 'Local storage already exist';
             _service = storageService;
         },
         get service() {
