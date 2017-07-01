@@ -17,9 +17,11 @@ export function loginAction(data, success, error) {
 
     return dispatch => {
         dispatch({ type: LOGIN_REQUEST });
-        
+
         http.service.post('api/v2/mobile/login', serialize(data), header)
             .then(res => {
+                if (res.data.status === 'fail') throw new Error();
+                
                 storage.service.setItem('token', res.data.token);
                 dispatch({ type: LOGIN_SUCCESS, payload: res.data.token })
             })
