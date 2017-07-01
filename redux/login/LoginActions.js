@@ -11,7 +11,7 @@ export function loginAction(data, success, error) {
     return dispatch => {
         dispatch({ type: LOGIN_REQUEST });
 
-        axios.post('https://reqres.in/api/login', data)
+        axios.post('/api/login', data)
             .then(res => {
                 localStorage.setItem('token', res.data.token);
                 dispatch({ type: LOGIN_SUCCESS, payload: res.data.token })
