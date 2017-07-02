@@ -31,5 +31,8 @@ export function loginAction(data, success, error) {
 }
 
 export function logoutAction() {
+    storage.service.removeItem('user_data');
+    storage.service.removeItem('token');
+    
     return { type: LOGOUT }
 }

@@ -31,15 +31,12 @@ const loginReducer = (state = getInitialState(), action) => {
                 user: null
             };
         case LOGIN_SUCCESS:
-            storage.service.setItem('user_data', JSON.stringify(action.payload));
             return {
                 request: false,
                 isLoggedIn: true,
                 user: action.payload
             };
         case LOGOUT:
-            storage.service.removeItem('user_data');
-            storage.service.removeItem('token');
             return {
                 request: false,
                 isLoggedIn: false,
